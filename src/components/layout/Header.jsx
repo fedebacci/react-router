@@ -4,4 +4,4 @@ export default function Header () {
             Header
         </header>
     );
-}
+};

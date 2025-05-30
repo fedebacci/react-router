@@ -1,14 +1,28 @@
-import Header from './components/layout/Header';
-import Main from './components/layout/Main';
-import Footer from './components/layout/Footer';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import DefaultLayout from './layouts/DefaultLayout';
+import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
+import PostsPage from './pages/PostsPage';
 
 export default function App() {
 
   return (
     <>
-      <Header />
-      <Main />
-      <Footer />
+
+      <BrowserRouter>
+        <Routes>
+          
+          <Route element={<DefaultLayout />}>
+            <Route path={'/'} element={<HomePage />} />
+            <Route path={'/about'} element={<AboutPage />} />
+            <Route path={'/posts'} element={<PostsPage />} />
+          </Route>
+
+        </Routes>
+      </BrowserRouter>
+
+
     </>
   )
 }

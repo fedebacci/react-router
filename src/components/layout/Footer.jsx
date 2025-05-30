@@ -4,4 +4,4 @@ export default function Footer () {
             Footer
         </footer>
     );
-}
+};
