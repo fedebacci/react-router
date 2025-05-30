@@ -2,7 +2,19 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 
+
+
+import PostsList from "../components/posts/PostsList";
+
+
+
+
+
 const apiUrl = 'http://localhost:3000/posts'
+
+
+
+
 
 export default function PostsPage () {
 
@@ -30,38 +42,7 @@ export default function PostsPage () {
                         </h2>
                     </div>
 
-                    <div className="col-12">
-                        <div className="row row-cols-2 g-3">
-                            {
-                                posts.length > 0 ?
-                                posts.map(post => {
-                                    return(
-                                        <div className="col" key={post.id}>
-                                            <div className="card shadow h-100" data-id={post.id}>
-                                                <div className="card-header">
-                                                    {/* RIMPIAZZO TEMPORANEAMENTE LA PORTA NELL'URL DELLE IMMAGINI PER VEDERLE SENZA ERRORI */}
-                                                    {/* todo: SISTEMARE */}
-                                                    <img className="post-image" src={post.image.replaceAll('3000', '5173')} alt={post.title} />
-                                                </div>
-                                                <div className="card-body">
-                                                    <h6>
-                                                        <strong>
-                                                            {post.title}
-                                                        </strong>
-                                                    </h6>
-                                                    <p>
-                                                        {post.content}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )
-                                })
-                                :
-                                "Nessun post da visualizzare"
-                            }
-                        </div>
-                    </div>
+                    <PostsList posts={posts} />
                 </div>
             </div>
         </main>
