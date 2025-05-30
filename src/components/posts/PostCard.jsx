@@ -1,3 +1,12 @@
+import { Link } from "react-router-dom";
+
+
+
+import pages from "../../assets/js/data/pages";
+
+
+
+
 export default function PostCard ({ post }) {
     return (
         <div className="col">
@@ -16,6 +25,9 @@ export default function PostCard ({ post }) {
                     <p>
                         {post.content}
                     </p>
+                    {/* <Link to={pages.MODIFYPOST(post.id)}>
+                        Modifica post
+                    </Link> */}
                 </div>
             </div>
         </div>
