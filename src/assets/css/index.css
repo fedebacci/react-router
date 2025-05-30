@@ -6,9 +6,8 @@
 }
 
 #root {
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
-    overflow: hidden;
 
     display: flex;
     flex-direction: column;
@@ -17,4 +16,12 @@
 
 #root > main {
     flex-grow: 1;
+}
+
+
+
+
+.post-image {
+    display: block;
+    max-width: 100%;
 }

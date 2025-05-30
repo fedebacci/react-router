@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function NotFoundPage () {
     return (
         <main>
@@ -5,8 +7,13 @@ export default function NotFoundPage () {
                 <div className="row">
                     <div className="col-12">
                         <h2 className="text-center">
-                            404
+                            Pagina non trovata
                         </h2>
+                        <p className="text-center">
+                            <Link to="/">
+                                Torna alla homepage
+                            </Link>
+                        </p>
                     </div>
                 </div>
             </div>

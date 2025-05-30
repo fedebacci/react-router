@@ -32,11 +32,11 @@ export default function Header () {
                                 Posts
                             </NavLink>
                         </li>
-                        <li className="nav-item">
+                        {/* <li className="nav-item">
                             <NavLink className='nav-link' to='test'>
                                 Test 404
                             </NavLink>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
             </div>
