@@ -1,5 +1,7 @@
 import { NavLink } from "react-router-dom";
 
+import pages from "../../assets/js/data/pages";
+
 export default function Header () {
     return (
     <header>
@@ -16,18 +18,23 @@ export default function Header () {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <NavLink className='nav-link' to={'/'}>
+                            <NavLink className='nav-link' to={pages.HOME()}>
                                 Home
                             </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className='nav-link' to={'/about'}>
+                            <NavLink className='nav-link' to={pages.ABOUT()}>
                                 Chi siamo
                             </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className='nav-link' to={'/posts'}>
+                            <NavLink className='nav-link' to={pages.POSTS()}>
                                 Posts
+                            </NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink className='nav-link' to='test'>
+                                Test 404
                             </NavLink>
                         </li>
                     </ul>

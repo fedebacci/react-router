@@ -1,9 +1,13 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
+import pages from "./assets/js/data/pages";
+
 import DefaultLayout from './layouts/DefaultLayout';
+
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import PostsPage from './pages/PostsPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 export default function App() {
 
@@ -14,9 +18,12 @@ export default function App() {
         <Routes>
           
           <Route element={<DefaultLayout />}>
-            <Route path={'/'} element={<HomePage />} />
-            <Route path={'/about'} element={<AboutPage />} />
-            <Route path={'/posts'} element={<PostsPage />} />
+            {/* NB: L'ATTRIBUTO INDEX EQUIVALE AL PATH='/' */}
+            {/* <Route path={pages.HOME()} element={<HomePage />} /> */}
+            <Route index element={<HomePage />} />
+            <Route path={pages.ABOUT()} element={<AboutPage />} />
+            <Route path={pages.POSTS()} element={<PostsPage />} />
+            <Route path='*' element={<NotFoundPage />} />
           </Route>
 
         </Routes>
