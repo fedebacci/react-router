@@ -38,7 +38,7 @@ export default function PostsPage () {
         <main>
             <div className="container my-3">
 
-                
+
                 {/* <div className="row g-3">
                     <div className="col-12">
                         <h2 className="text-center">
@@ -73,9 +73,9 @@ export default function PostsPage () {
                                 </thead>
                                 <tbody>
                                     {
-                                        posts.map((post, index) => {
+                                        posts.map(post => {
                                             return (
-                                                <tr key={index}>
+                                                <tr key={post.id}>
                                                     <td>
                                                         {post.id}
                                                     </td>
@@ -93,6 +93,22 @@ export default function PostsPage () {
                                             )
                                         })
                                     }
+
+                                    <tr key="1000">
+                                        <td>
+                                            X
+                                        </td>
+                                        <td>
+                                            <Link to={pages.SHOWPOST('1000')}>
+                                                TEST ERRORE SHOW
+                                            </Link>
+                                        </td>
+                                        <td>
+                                            <Link to={pages.MODIFYPOST('1000')}>
+                                                TEST ERRORE MODIFY
+                                            </Link>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                             :

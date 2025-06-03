@@ -35,6 +35,8 @@ export default function ShowPostPage () {
                 console.error(error);
 
                 navigate('/not-found')
+                // navigate('/posts')
+                // navigate(-1)
             })
     }, [])
 
@@ -63,10 +65,8 @@ export default function ShowPostPage () {
                                 <h2 className="text-center">
                                     {post.title}
                                 </h2>
-                                {/* RIMPIAZZO TEMPORANEAMENTE LA PORTA NELL'URL DELLE IMMAGINI PER VEDERLE SENZA ERRORI */}
-                                {/* todo: SISTEMARE */}
                                 <div className="text-center my-3">
-                                    <img src={post.image.replaceAll('3000', '5173')} alt={post.title} />
+                                    <img src={post.image} alt={post.title} />
                                 </div>
                                 <p>
                                     {
