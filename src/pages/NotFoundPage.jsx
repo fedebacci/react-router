@@ -14,6 +14,11 @@ export default function NotFoundPage () {
                                 Torna alla homepage
                             </Link>
                         </p>
+                        <p className="text-center">
+                            <Link to="/posts">
+                                Torna alla lista dei post
+                            </Link>
+                        </p>
                     </div>
                 </div>
             </div>

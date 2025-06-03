@@ -6,10 +6,12 @@ import DefaultLayout from './layouts/DefaultLayout';
 
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
-import PostsPage from './pages/PostsPage';
-import CreatePostPage from './pages/CreatePostPage';
-import ShowPostPage from './pages/ShowPostPage';
-import ModifyPostPage from './pages/ModifyPostPage';
+
+import PostsPage from './pages/posts/PostsPage';
+import CreatePostPage from './pages/posts/CreatePostPage';
+import ShowPostPage from './pages/posts/ShowPostPage';
+import ModifyPostPage from './pages/posts/ModifyPostPage';
+
 import NotFoundPage from './pages/NotFoundPage';
 
 export default function App() {

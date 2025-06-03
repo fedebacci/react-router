@@ -2,17 +2,20 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 import { Link } from "react-router-dom";
-import pages from "../assets/js/data/pages";
+import pages from "../../assets/js/data/pages";
 
 
 
-import PostsList from "../components/posts/PostsList";
+import PostsList from "../../components/posts/PostsList";
 
 
 
 
 
 const apiUrl = 'http://localhost:3000/posts'
+
+
+
 
 
 
@@ -33,6 +36,23 @@ export default function PostsPage () {
                 console.error(error);
             })
     }, [])
+
+
+
+    const deletePost = (id) => {
+        axios
+            .delete(apiUrl + '/' + id)
+            .then(response => {
+                console.info(response);
+                setPosts(response.data.posts);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
+
+
+
 
     return (
         <main>
@@ -62,7 +82,7 @@ export default function PostsPage () {
 
                         {
                             posts.length > 0 ?
-                            <table className="table table-striped">
+                            <table className="table table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th>
@@ -89,16 +109,23 @@ export default function PostsPage () {
                                                         </Link>
                                                     </td>
                                                     <td>
-                                                        <Link className="btn btn-primary" to={pages.MODIFYPOST(post.id)}>
+                                                        <Link className="btn btn-primary me-1" to={pages.MODIFYPOST(post.id)}>
                                                             Modifica
                                                         </Link>
+
+                                                        <button 
+                                                            onClick={() => deletePost(post.id)}
+                                                            className="btn btn-danger"
+                                                        >
+                                                            Elimina
+                                                        </button>
                                                     </td>
                                                 </tr>
                                             )
                                         })
                                     }
 
-                                    <tr key="1000">
+                                    {/* <tr key="1000">
                                         <td>
                                             X
                                         </td>
@@ -112,7 +139,7 @@ export default function PostsPage () {
                                                 TEST ERRORE MODIFY
                                             </Link>
                                         </td>
-                                    </tr>
+                                    </tr> */}
                                 </tbody>
                             </table>
                             :

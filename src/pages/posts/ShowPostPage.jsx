@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 
+import pages from "../../assets/js/data/pages";
+
 
 
 const apiUrl = 'http://localhost:3000/posts'
@@ -55,9 +57,39 @@ export default function ShowPostPage () {
             <div className="container my-3">
                 <div className="row g-3">
                     <div className="col-12">
-                        <Link className="btn btn-primary" to="/posts">
+                        <Link className="btn btn-primary" to={pages.POSTS()}>
                             Torna alla lista
                         </Link>
+
+
+                        {/* {
+                            post.id - 1 > 0 ?
+                            <Link className="btn btn-primary" to={pages.SHOWPOST(post.id - 1)}>
+                                Post precedente
+                            </Link>
+                            :
+                            ""
+                        } */}
+                        {/* {
+                            post.id + 1 !== "AAAA" ?
+                            <Link className="btn btn-primary" to={pages.SHOWPOST(post.id + 1)}>
+                                Prossimo post
+                            </Link>
+                            :
+                            ""
+                        } */}
+
+
+{/* NO! DEVO SETTARE L'ID E BASTA, NON NAVIGARE DI NUOVO! */}
+                        {/* <Link className="btn btn-primary" to={pages.SHOWPOST(post.id - 1)}>
+                            Post precedente
+                        </Link>
+                        <Link className="btn btn-primary" to={pages.SHOWPOST(post.id + 1)}>
+                            Prossimo post
+                        </Link> */}
+
+
+
                         {
                             !post.id ? 
                                 <p>
