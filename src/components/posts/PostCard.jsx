@@ -25,9 +25,9 @@ export default function PostCard ({ post }) {
                     <p>
                         {post.content}
                     </p>
-                    {/* <Link to={pages.MODIFYPOST(post.id)}>
+                    <Link to={pages.MODIFYPOST(post.id)}>
                         Modifica post
-                    </Link> */}
+                    </Link>
                 </div>
             </div>
         </div>

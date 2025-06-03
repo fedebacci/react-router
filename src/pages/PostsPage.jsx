@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+import { Link } from "react-router-dom";
+import pages from "../assets/js/data/pages";
 
 
 
@@ -24,7 +26,7 @@ export default function PostsPage () {
         axios
             .get(apiUrl)
             .then(response => {
-                console.info(response);
+                // console.info(response.data);
                 setPosts(response.data.posts);
             })
             .catch(error => {
@@ -35,7 +37,9 @@ export default function PostsPage () {
     return (
         <main>
             <div className="container my-3">
-                <div className="row g-3">
+
+                
+                {/* <div className="row g-3">
                     <div className="col-12">
                         <h2 className="text-center">
                             Posts
@@ -43,6 +47,62 @@ export default function PostsPage () {
                     </div>
 
                     <PostsList posts={posts} />
+                </div> */}
+
+
+                <div className="row g-3">
+                    <div className="col-12">
+                        <h2 className="text-center">
+                            Posts
+                        </h2>
+
+                        {
+                            posts.length > 0 ?
+                            <table className="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            ID
+                                        </th>
+                                        <th>
+                                            TITLE
+                                        </th>
+                                        <th>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        posts.map((post, index) => {
+                                            return (
+                                                <tr key={index}>
+                                                    <td>
+                                                        {post.id}
+                                                    </td>
+                                                    <td>
+                                                        <Link to={pages.SHOWPOST(post.id)}>
+                                                            {post.title}
+                                                        </Link>
+                                                    </td>
+                                                    <td>
+                                                        <Link to={pages.MODIFYPOST(post.id)}>
+                                                            Modifica
+                                                        </Link>
+                                                    </td>
+                                                </tr>
+                                            )
+                                        })
+                                    }
+                                </tbody>
+                            </table>
+                            :
+                            <div className="col-12">
+                                <h5>
+                                    Nessun post da visualizzare
+                                </h5>
+                            </div>
+                        }
+                    </div>
                 </div>
             </div>
         </main>
