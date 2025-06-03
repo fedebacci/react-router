@@ -10,27 +10,59 @@ const apiUrl = 'http://localhost:3000/posts'
 
 
 
+let prevPostId = null;
+let nextPostId = null;
 
 
 export default function ShowPostPage () {
 
-    // const params = useParams();
-    // console.log(params);
-
-
     const { id } = useParams();
-    // console.log(id);
 
+    
+    const [post, setPost] = useState({});
+
+
+    // # SOLUZIONE TEMPORANEA PER SCORRIMENTO TRA I POST
+    // console.warn("id", id);
+    // console.warn("typeof(id)", typeof(id));
+    // // console.warn("post", post);
+    // console.warn("post.id", post.id);
+    // console.warn("typeof(post.id)", typeof(post.id));
+    // console.warn("post.id == id", post.id == id);
+    // console.warn("post.id === parseInt(id)", post.id === parseInt(id));
+    // console.warn("_________________________________________________________-");
+    if (post.id != id) {
+        axios
+            .get(apiUrl + '/' + id)
+            .then(response => {
+                // console.info(response.data);
+                // console.info(response.data.prevPost);
+                // console.info(response.data.nextPost);
+                prevPostId = response.data.prevPost;
+                nextPostId = response.data.nextPost;
+                setPost(response.data.post);
+            })
+            .catch(error => {
+                console.error(error);
+
+                navigate('/not-found');
+                // navigate('/posts');
+                // navigate(-1);
+            })
+    };
+    
     const navigate = useNavigate();
 
-
-    const [post, setPost] = useState({});
 
     useEffect(() => {
         axios
             .get(apiUrl + '/' + id)
             .then(response => {
                 // console.info(response.data);
+                // console.info(response.data.prevPost);
+                // console.info(response.data.nextPost);
+                prevPostId = response.data.prevPost;
+                nextPostId = response.data.nextPost;
                 setPost(response.data.post);
             })
             .catch(error => {
@@ -42,13 +74,7 @@ export default function ShowPostPage () {
             })
     }, [])
 
-
-
-
-
-
-
-
+    
 
 
 
@@ -57,36 +83,32 @@ export default function ShowPostPage () {
             <div className="container my-3">
                 <div className="row g-3">
                     <div className="col-12">
-                        <Link className="btn btn-primary" to={pages.POSTS()}>
+                        <Link className="btn btn-primary me-1" to={pages.POSTS()}>
                             Torna alla lista
                         </Link>
 
-
-                        {/* {
-                            post.id - 1 > 0 ?
-                            <Link className="btn btn-primary" to={pages.SHOWPOST(post.id - 1)}>
-                                Post precedente
+                        <br />
+                        {/* NO! DEVO SETTARE L'ID E BASTA E AGGIORNARE IL COMPONENTE CON UNO USESTATE, NON NAVIGARE DI NUOVO! */}
+                        {
+                            prevPostId != undefined ?
+                            <Link className="btn btn-secondary me-1" to={pages.SHOWPOST(prevPostId)}>
+                                Post precedente ({prevPostId})
                             </Link>
                             :
                             ""
-                        } */}
-                        {/* {
-                            post.id + 1 !== "AAAA" ?
-                            <Link className="btn btn-primary" to={pages.SHOWPOST(post.id + 1)}>
-                                Prossimo post
+                        }
+                        {
+                            nextPostId != undefined ?
+                            <Link className="btn btn-secondary" to={pages.SHOWPOST(nextPostId)}>
+                                Prossimo post ({nextPostId})
                             </Link>
                             :
                             ""
-                        } */}
+                        }
 
 
-{/* NO! DEVO SETTARE L'ID E BASTA, NON NAVIGARE DI NUOVO! */}
-                        {/* <Link className="btn btn-primary" to={pages.SHOWPOST(post.id - 1)}>
-                            Post precedente
-                        </Link>
-                        <Link className="btn btn-primary" to={pages.SHOWPOST(post.id + 1)}>
-                            Prossimo post
-                        </Link> */}
+
+
 
 
 
