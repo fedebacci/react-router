@@ -56,6 +56,10 @@ export default function PostsPage () {
                             Posts
                         </h2>
 
+                        <Link to="/posts/create" className="btn btn-primary">
+                            Crea nuovo post
+                        </Link>
+
                         {
                             posts.length > 0 ?
                             <table className="table table-striped">
@@ -85,7 +89,7 @@ export default function PostsPage () {
                                                         </Link>
                                                     </td>
                                                     <td>
-                                                        <Link to={pages.MODIFYPOST(post.id)}>
+                                                        <Link className="btn btn-primary" to={pages.MODIFYPOST(post.id)}>
                                                             Modifica
                                                         </Link>
                                                     </td>

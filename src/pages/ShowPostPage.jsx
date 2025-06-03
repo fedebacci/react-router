@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 
 
@@ -34,9 +34,9 @@ export default function ShowPostPage () {
             .catch(error => {
                 console.error(error);
 
-                navigate('/not-found')
-                // navigate('/posts')
-                // navigate(-1)
+                // navigate('/not-found');
+                // navigate('/posts');
+                navigate(-1);
             })
     }, [])
 
@@ -55,6 +55,9 @@ export default function ShowPostPage () {
             <div className="container my-3">
                 <div className="row g-3">
                     <div className="col-12">
+                        <Link className="btn btn-primary" to="/posts">
+                            Torna alla lista
+                        </Link>
                         {
                             !post.id ? 
                                 <p>

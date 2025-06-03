@@ -24,10 +24,17 @@ export default function App() {
             {/* <Route path={pages.HOME()} element={<HomePage />} /> */}
             <Route index element={<HomePage />} />
             <Route path={pages.ABOUT()} element={<AboutPage />} />
-            <Route path={pages.POSTS()} element={<PostsPage />} />
-            <Route path={pages.MODIFYPOST(":id")} element={<ModifyPostPage />} />
-            <Route path={pages.SHOWPOST(":id")} element={<ShowPostPage />} />
-            <Route path='*' element={<NotFoundPage />} />
+
+            <Route path='/posts'>
+              {/* <Route path={pages.POSTS()} element={<PostsPage />} /> */}
+              <Route index element={<PostsPage />} />
+              {/* QUI METTERE CREATE (PRIMA DI ROTTE PARAMERICHE, O CERCA DI USARE CREATE COME PARAMETRO :ID E VA IN 404) */}
+              <Route path='create' element={<main><h1>Pagina create</h1></main>} />
+              <Route path={pages.SHOWPOST(":id")} element={<ShowPostPage />} />
+              <Route path={pages.MODIFYPOST(":id")} element={<ModifyPostPage />} />
+              <Route path='*' element={<NotFoundPage />} />
+            </Route>
+
           </Route>
 
         </Routes>

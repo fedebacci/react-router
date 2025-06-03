@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 
@@ -18,7 +18,7 @@ export default function ModifyPostPage () {
 
     const { id } = useParams();
     // console.log(id);
-
+    const navigate = useNavigate();
 
     const [post, setPost] = useState({});
     const [postData, setPostData] = useState({});
@@ -33,6 +33,8 @@ export default function ModifyPostPage () {
             })
             .catch(error => {
                 console.error(error);
+
+                navigate('/not-found');
             })
     }, [])
 
