@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 
 
@@ -82,6 +82,12 @@ const handleSubmit = (e) => {
             <div className="container my-3">
                 <div className="row g-3">
                     <div className="col-12">
+
+                        <Link className="btn btn-primary" to="/posts">
+                            Torna alla lista
+                        </Link>
+
+
                         {
                             !post.id ? 
                                 <p>

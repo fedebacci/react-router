@@ -7,8 +7,9 @@ import DefaultLayout from './layouts/DefaultLayout';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import PostsPage from './pages/PostsPage';
-import ModifyPostPage from './pages/ModifyPostPage';
+import CreatePostPage from './pages/CreatePostPage';
 import ShowPostPage from './pages/ShowPostPage';
+import ModifyPostPage from './pages/ModifyPostPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 export default function App() {
@@ -27,10 +28,8 @@ export default function App() {
 
             {/* <Route path='/posts'> */}
             <Route path={pages.POSTS()}>
-              {/* <Route path={pages.POSTS()} element={<PostsPage />} /> */}
               <Route index element={<PostsPage />} />
-              {/* QUI METTERE CREATE (PRIMA DI ROTTE PARAMERICHE, O CERCA DI USARE CREATE COME PARAMETRO :ID E VA IN 404) */}
-              <Route path='create' element={<main><h1>Pagina create</h1></main>} />
+              <Route path={pages.CREATEPOST()} element={<CreatePostPage />} />
               <Route path={pages.SHOWPOST(":id")} element={<ShowPostPage />} />
               <Route path={pages.MODIFYPOST(":id")} element={<ModifyPostPage />} />
             </Route>
