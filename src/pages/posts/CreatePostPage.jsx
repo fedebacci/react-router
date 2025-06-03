@@ -63,35 +63,27 @@ const possibleTags = [
 
 
 export default function CreatePostPage () {
-
+    console.info("postInitialData", postInitialData);
 
     const [postData, setPostData] =  useState(postInitialData);
-    console.info(postData);
-    // console.info(postData.tags);
+    console.info("postData", postData);
 
     const navigate = useNavigate();
+
 
 
     // todo: SI RIPETE, DECIDERE SE DICHIARARLA FUORI E PASSARLA NEI COMPONENTI
     const handleInputChange = (e) => {
         if (e.target.type === "checkbox") {
-            // return setPostData({ ...postData, [e.target.name]: e.target.value});
             const isChecked = e.target.checked;
             const value = e.target.value;
-
-            // console.info("isChecked", isChecked);
-            // console.info("value", value);
-            // console.info("postData", postData);
-            // console.info("postData.tags", postData.tags);
             
             if (isChecked) {
                 const newTags = [ ...postData.tags, value ];
                 postData.tags.push(value);
-                // console.info("newTags", newTags);
                 setPostData({ ...postData, tags: newTags});
             } else {
                 const newTags = [ ...postData.tags ].filter(tag => tag != value);
-                // console.info("newTags", newTags);
                 setPostData({ ...postData, tags: newTags});
             }
 
@@ -99,22 +91,24 @@ export default function CreatePostPage () {
         }
         setPostData({ ...postData, [e.target.name]: e.target.value});
     };
+
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        // console.info(postData);
 
         axios
             .post(apiUrl, postData)
             .then(response => {
-                // console.info(response.data);
-                navigate(pages.SHOWPOST(response.data.newPost.id));
-
                 setPostData(postInitialData);
+                // navigate(pages.SHOWPOST(response.data.newPost.id));
             })
             .catch(error => {
                 console.error(error);
             })
     };
+
+
 
 
 

@@ -23,12 +23,9 @@ export default function App() {
         <Routes>
           
           <Route element={<DefaultLayout />}>
-            {/* NB: L'ATTRIBUTO INDEX EQUIVALE AL PATH='/' */}
-            {/* <Route path={pages.HOME()} element={<HomePage />} /> */}
             <Route index element={<HomePage />} />
             <Route path={pages.ABOUT()} element={<AboutPage />} />
 
-            {/* <Route path='/posts'> */}
             <Route path={pages.POSTS()}>
               <Route index element={<PostsPage />} />
               <Route path={pages.CREATEPOST()} element={<CreatePostPage />} />
