@@ -34,9 +34,9 @@ export default function ShowPostPage () {
             .catch(error => {
                 console.error(error);
 
-                // navigate('/not-found');
+                navigate('/not-found');
                 // navigate('/posts');
-                navigate(-1);
+                // navigate(-1);
             })
     }, [])
 
