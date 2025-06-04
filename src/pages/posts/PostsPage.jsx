@@ -7,6 +7,7 @@ import pages from "../../assets/js/data/pages";
 
 
 import PostsList from "../../components/posts/PostsList";
+import PostsTable from "../../components/posts/PostsTable";
 
 
 
@@ -49,7 +50,7 @@ export default function PostsPage () {
             .catch(error => {
                 console.error(error);
             });
-    }
+    };
 
 
 
@@ -76,79 +77,14 @@ export default function PostsPage () {
                             Posts
                         </h2>
 
-                        <Link to="/posts/create" className="btn btn-primary">
+                        <Link to="/posts/create" className="btn btn-primary mb-3">
                             Crea nuovo post
                         </Link>
 
-                        {
-                            posts.length > 0 ?
-                            <table className="table table-bordered table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            ID
-                                        </th>
-                                        <th>
-                                            TITLE
-                                        </th>
-                                        <th>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        posts.map(post => {
-                                            return (
-                                                <tr key={post.id}>
-                                                    <td>
-                                                        {post.id}
-                                                    </td>
-                                                    <td>
-                                                        <Link to={pages.SHOWPOST(post.id)}>
-                                                            {post.title}
-                                                        </Link>
-                                                    </td>
-                                                    <td>
-                                                        <Link className="btn btn-primary me-1" to={pages.MODIFYPOST(post.id)}>
-                                                            Modifica
-                                                        </Link>
-
-                                                        <button 
-                                                            onClick={() => deletePost(post.id)}
-                                                            className="btn btn-danger"
-                                                        >
-                                                            Elimina
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            )
-                                        })
-                                    }
-
-                                    {/* <tr key="1000">
-                                        <td>
-                                            X
-                                        </td>
-                                        <td>
-                                            <Link to={pages.SHOWPOST('1000')}>
-                                                TEST ERRORE SHOW
-                                            </Link>
-                                        </td>
-                                        <td>
-                                            <Link to={pages.MODIFYPOST('1000')}>
-                                                TEST ERRORE MODIFY
-                                            </Link>
-                                        </td>
-                                    </tr> */}
-                                </tbody>
-                            </table>
-                            :
-                            <div className="col-12">
-                                <h5>
-                                    Nessun post da visualizzare
-                                </h5>
-                            </div>
-                        }
+                        <PostsTable
+                            posts={posts}
+                            handleDelete={deletePost}
+                        />
                     </div>
                 </div>
             </div>

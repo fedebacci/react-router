@@ -16,6 +16,7 @@ const postInitialData = {
     content: "",
     tags: [],
 }
+console.info("postInitialData SUBITO", postInitialData)
 const possibleTags = [
     {
         id: 1, 
@@ -63,10 +64,11 @@ const possibleTags = [
 
 
 export default function CreatePostPage () {
-    console.info("postInitialData", postInitialData);
 
+    // const [postData, setPostData] =  useState({ ...postInitialData });
     const [postData, setPostData] =  useState(postInitialData);
-    console.info("postData", postData);
+    console.info("postData durante caricamento CreatePostPage", postData);
+    console.info("postInitialData durante caricamento CreatePostPage", postInitialData);
 
     const navigate = useNavigate();
 
@@ -96,6 +98,9 @@ export default function CreatePostPage () {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        console.info("postData durante handleSubmit", postData);
+        console.info("postInitialData durante handleSubmit", postInitialData);
 
         axios
             .post(apiUrl, postData)

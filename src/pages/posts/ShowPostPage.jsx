@@ -17,41 +17,10 @@ let nextPostId = null;
 export default function ShowPostPage () {
 
     const { id } = useParams();
-
     
     const [post, setPost] = useState({});
     const [currentPostId, setCurrentPostId] = useState(id);
 
-
-    // # SOLUZIONE TEMPORANEA PER SCORRIMENTO TRA I POST
-    // console.warn("id", id);
-    // console.warn("typeof(id)", typeof(id));
-    // // console.warn("post", post);
-    // console.warn("post.id", post.id);
-    // console.warn("typeof(post.id)", typeof(post.id));
-    // console.warn("post.id == id", post.id == id);
-    // console.warn("post.id === parseInt(id)", post.id === parseInt(id));
-    // console.warn("_________________________________________________________-");
-    // if (post.id != id) {
-    //     axios
-    //         .get(apiUrl + '/' + id)
-    //         .then(response => {
-    //             // console.info(response.data);
-    //             // console.info(response.data.prevPost);
-    //             // console.info(response.data.nextPost);
-    //             prevPostId = response.data.prevPost;
-    //             nextPostId = response.data.nextPost;
-    //             setPost(response.data.post);
-    //         })
-    //         .catch(error => {
-    //             console.error(error);
-
-    //             navigate('/not-found');
-    //             // navigate('/posts');
-    //             // navigate(-1);
-    //         })
-    // };
-    
     const navigate = useNavigate();
 
 
@@ -60,9 +29,6 @@ export default function ShowPostPage () {
         axios
             .get(apiUrl + '/' + postId)
             .then(response => {
-                console.info(response.data);
-                // console.info(response.data.prevPost);
-                // console.info(response.data.nextPost);
                 prevPostId = response.data.prevPost;
                 nextPostId = response.data.nextPost;
                 setPost(response.data.post);
@@ -72,8 +38,6 @@ export default function ShowPostPage () {
                 console.error(error);
 
                 navigate('/not-found');
-                // navigate('/posts');
-                // navigate(-1);
             })
     }
 
@@ -82,17 +46,10 @@ export default function ShowPostPage () {
         fetchPost(id);
     }, [])
 
-
     useEffect(() => {
-        console.debug("currentPostId cambiato", currentPostId);
-        console.debug("post", post);
         fetchPost(currentPostId);
     }, [currentPostId])
 
-    // * DEBUG
-    useEffect(() => {
-        console.debug("post cambiato", post);
-    }, [post])
 
     
 
@@ -103,49 +60,30 @@ export default function ShowPostPage () {
             <div className="container my-3">
                 <div className="row g-3">
                     <div className="col-12">
-                        <Link className="btn btn-primary me-1" to={pages.POSTS()}>
+                        <Link className="btn btn-primary mb-1" to={pages.POSTS()}>
                             Torna alla lista
                         </Link>
 
                         <br />
-                        {/* NO! DEVO SETTARE L'ID E BASTA E AGGIORNARE IL COMPONENTE CON UNO USESTATE, NON NAVIGARE DI NUOVO! */}
-                        {/* {
-                            prevPostId != undefined ?
-                            <Link className="btn btn-secondary me-1" to={pages.SHOWPOST(prevPostId)}>
-                                Post precedente  */}
-                                {/* ({prevPostId}) */}
-                            {/* </Link>
-                            :
-                            ""
-                        }
-                        {
-                            nextPostId != undefined ?
-                            <Link className="btn btn-secondary" to={pages.SHOWPOST(nextPostId)}>
-                                Post successivo  */}
-                                {/* ({nextPostId}) */}
-                            {/* </Link>
-                            :
-                            ""
-                        } */}
 
-                        <br />
-                        <br />
 
                         {
-                            prevPostId != undefined ?
-                            <button onClick={() => setCurrentPostId(prevPostId)} className="btn btn-secondary">
+                            <button 
+                                disabled={prevPostId == undefined} 
+                                onClick={() => setCurrentPostId(prevPostId)} 
+                                className="btn btn-secondary me-1"
+                            >
                                 Post precedente
                             </button>
-                            :
-                            ""
                         }
                         {
-                            nextPostId != undefined ?
-                            <button onClick={() => setCurrentPostId(nextPostId)} className="btn btn-secondary">
+                            <button 
+                                disabled={nextPostId == undefined} 
+                                onClick={() => setCurrentPostId(nextPostId)} 
+                                className="btn btn-secondary me-1"
+                            >
                                 Post successivo
                             </button>
-                            :
-                            ""
                         }
 
 
