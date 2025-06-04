@@ -65,10 +65,10 @@ const possibleTags = [
 
 export default function CreatePostPage () {
 
-    // const [postData, setPostData] =  useState({ ...postInitialData });
-    const [postData, setPostData] =  useState(postInitialData);
-    console.info("postData durante caricamento CreatePostPage", postData);
-    console.info("postInitialData durante caricamento CreatePostPage", postInitialData);
+    const [postData, setPostData] =  useState({ ...postInitialData });
+    // const [postData, setPostData] =  useState(postInitialData);
+    // console.info("postData durante caricamento CreatePostPage", postData);
+    // console.info("postInitialData durante caricamento CreatePostPage", postInitialData);
 
     const navigate = useNavigate();
 
@@ -79,11 +79,17 @@ export default function CreatePostPage () {
         if (e.target.type === "checkbox") {
             const isChecked = e.target.checked;
             const value = e.target.value;
+
+            // console.debug("CHECKBOX: ", e.target);
             
             if (isChecked) {
                 const newTags = [ ...postData.tags, value ];
-                postData.tags.push(value);
+                // console.debug("postData.tags: ", postData.tags);
+                // console.debug("newTags: ", newTags);
+                
                 setPostData({ ...postData, tags: newTags});
+                // console.debug("postData DOPO AGGIUNTA TAG: ", postData);
+                // console.debug("postInitialData DOPO AGGIUNTA TAG: ", postInitialData);
             } else {
                 const newTags = [ ...postData.tags ].filter(tag => tag != value);
                 setPostData({ ...postData, tags: newTags});
@@ -99,14 +105,18 @@ export default function CreatePostPage () {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        console.info("postData durante handleSubmit", postData);
-        console.info("postInitialData durante handleSubmit", postInitialData);
+        // console.info("postData durante handleSubmit", postData);
+        // console.info("postInitialData durante handleSubmit", postInitialData);
 
         axios
             .post(apiUrl, postData)
             .then(response => {
-                setPostData(postInitialData);
-                // navigate(pages.SHOWPOST(response.data.newPost.id));
+                console.log("RISPOSTA", response.data);
+
+                setPostData({ ...postInitialData });
+                // setPostData(postInitialData);
+
+                navigate(pages.SHOWPOST(response.data.newPost.id));
             })
             .catch(error => {
                 console.error(error);

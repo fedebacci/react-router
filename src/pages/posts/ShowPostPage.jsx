@@ -103,7 +103,12 @@ export default function ShowPostPage () {
                                     {post.title}
                                 </h2>
                                 <div className="text-center my-3">
-                                    <img src={post.image} alt={post.title} />
+                                    <img 
+                                        src={post.image} 
+                                        alt={post.title} 
+
+                                        className="post-image"
+                                    />
                                 </div>
                                 <p>
                                     {
