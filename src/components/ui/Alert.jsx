@@ -1,12 +1,9 @@
-import { useAlert } from "../../contexts/AlertContext"
-// console.log("useAlert in componente Alert", useAlert)
+import { useAlert } from "../../contexts/AlertContext";
 
 
 export default function Alert () {
 
     const { data, hideAlert } = useAlert();
-    // console.log("data in componente Alert", data);
-    // console.log("hideAlert in componente Alert", hideAlert);
 
     if (!data.show) return <></>;
 
@@ -26,5 +23,5 @@ export default function Alert () {
                 }
             </div>
         </>
-    )
-}
+    );
+};

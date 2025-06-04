@@ -1,6 +1,10 @@
 import { createContext, useContext, useState } from "react";
 
+
+
 const AlertContext = createContext();
+
+
 
 const alertInitialData = {
     type: "",
@@ -8,12 +12,16 @@ const alertInitialData = {
     show: false,
 };
 
+
+
+
+
 function AlertProvider ({ children }) {
 
     const [ alertData, setAlertData ] = useState(alertInitialData);
-    // console.debug("alertInitialData dentro AlertProvider", alertInitialData);
-    // console.debug("alertData dentro AlertProvider", alertData);
     
+
+
     const showAlert = (text, type = "info") => {
         if (!text) return;
         setAlertData({ text, type, show: true});
@@ -28,7 +36,8 @@ function AlertProvider ({ children }) {
         showAlert,
         hideAlert,
     };
-    // console.debug("alertHandler dentro AlertProvider", alertHandler);
+    
+
 
     return (
         <AlertContext.Provider value={alertHandler}>
@@ -38,9 +47,11 @@ function AlertProvider ({ children }) {
 };
 
 
-function useAlert() {
+
+function useAlert () {
     return useContext(AlertContext);
 };
+
 
 
 export { AlertProvider, useAlert };

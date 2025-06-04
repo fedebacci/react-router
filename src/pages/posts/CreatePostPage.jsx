@@ -5,7 +5,7 @@ import axios from "axios";
 import pages from "../../assets/js/data/pages";
 
 
-const apiUrl = 'http://localhost:3000/posts'
+const apiUrl = 'http://localhost:3000/posts';
 
 
 
@@ -15,8 +15,7 @@ const postInitialData = {
     image: "",
     content: "",
     tags: [],
-}
-console.info("postInitialData SUBITO", postInitialData)
+};
 const possibleTags = [
     {
         id: 1, 
@@ -54,7 +53,7 @@ const possibleTags = [
         id: 9, 
         text: "Ricette al forno"
     },
-]
+];
 
 
 
@@ -66,10 +65,6 @@ const possibleTags = [
 export default function CreatePostPage () {
 
     const [postData, setPostData] =  useState({ ...postInitialData });
-    // const [postData, setPostData] =  useState(postInitialData);
-    // console.info("postData durante caricamento CreatePostPage", postData);
-    // console.info("postInitialData durante caricamento CreatePostPage", postInitialData);
-
     const navigate = useNavigate();
 
 
@@ -80,23 +75,16 @@ export default function CreatePostPage () {
             const isChecked = e.target.checked;
             const value = e.target.value;
 
-            // console.debug("CHECKBOX: ", e.target);
-            
             if (isChecked) {
-                const newTags = [ ...postData.tags, value ];
-                // console.debug("postData.tags: ", postData.tags);
-                // console.debug("newTags: ", newTags);
-                
+                const newTags = [ ...postData.tags, value ];                
                 setPostData({ ...postData, tags: newTags});
-                // console.debug("postData DOPO AGGIUNTA TAG: ", postData);
-                // console.debug("postInitialData DOPO AGGIUNTA TAG: ", postInitialData);
             } else {
                 const newTags = [ ...postData.tags ].filter(tag => tag != value);
                 setPostData({ ...postData, tags: newTags});
-            }
+            };
 
             return;
-        }
+        };
         setPostData({ ...postData, [e.target.name]: e.target.value});
     };
 
@@ -105,22 +93,15 @@ export default function CreatePostPage () {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // console.info("postData durante handleSubmit", postData);
-        // console.info("postInitialData durante handleSubmit", postInitialData);
-
         axios
             .post(apiUrl, postData)
             .then(response => {
-                console.log("RISPOSTA", response.data);
-
                 setPostData({ ...postInitialData });
-                // setPostData(postInitialData);
-
                 navigate(pages.SHOWPOST(response.data.newPost.id));
             })
             .catch(error => {
                 console.error(error);
-            })
+            });
     };
 
 
